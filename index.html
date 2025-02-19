@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猫咪问答</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #cat {
+            width: 200px;
+            height: 200px;
+            background-image: url('static/img_1.png'); /* 更新静态资源路径 */
+            background-size: cover;
+            margin: 0 auto;
+        }
+        .question {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+        .buttons {
+            margin-top: 30px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        #agree {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #disagree {
+            background-color: #f44336;
+            color: white;
+        }
+        #agree.expanded {
+            width: 220px;
+            height: 60px;
+        }
+        #disagreeText {
+            display: none; /* 默认隐藏文字 */
+            margin-top: 20px;
+            font-size: 20px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cat"></div>
+
+    <div class="question">请问你是笨蛋吗？</div>
+
+    <div class="buttons">
+        <button id="agree">同意</button>
+        <button id="disagree">不同意</button>
+    </div>
+
+    <div id="disagreeText">原来你自己都觉得自己是笨蛋哈哈哈</div>
+
+    <script>
+        const agreeButton = document.getElementById('agree');
+        const disagreeButton = document.getElementById('disagree');
+        const disagreeText = document.getElementById('disagreeText');
+        const catImage = document.getElementById('cat');
+        const question = document.querySelector('.question');
+        const buttons = document.querySelector('.buttons');
+
+        let agreeButtonSize = 200; // 初始大小
+
+        disagreeButton.addEventListener('click', function() {
+            // 每次点击 "不同意" 按钮时，"同意" 按钮增大相同的量
+            agreeButtonSize += 20; // 每次增加 20px
+            agreeButton.style.width = agreeButtonSize + 'px';
+            agreeButton.style.height = agreeButtonSize + 'px';
+        });
+
+        agreeButton.addEventListener('click', function() {
+            // 只有点击 "同意" 按钮时，才会显示文字
+            disagreeText.style.display = 'block';
+            catImage.style.display = 'none';
+            agreeButton.style.display = 'none';
+            disagreeButton.style.display = 'none';
+            question.style.display = 'none';
+            buttons.style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>
