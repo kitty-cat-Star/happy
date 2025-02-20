@@ -10,19 +10,23 @@
             font-family: Arial, sans-serif;
             padding: 20px;
         }
+        /* 第一个GIF: 居中 & 适配手机 */
         #cat {
-            max-width: 80%; /* 适配手机 */
+            max-width: 80%;
             height: auto;
-            margin: 0 auto;
             display: block;
+            margin: 50px auto; /* 居中对齐，并下移 */
         }
+        /* 问题文本：下移 */
         .question {
-            margin-top: 20px;
+            margin-top: 30px;
             font-size: 24px;
         }
+        /* 按钮：下移 */
         .buttons {
             margin-top: 30px;
         }
+        /* 按钮样式 */
         button {
             padding: 10px 20px;
             font-size: 18px;
@@ -40,23 +44,32 @@
             background-color: #f44336;
             color: white;
         }
+        /* "原来你是笨蛋" 的文本 */
         #disagreeText {
             display: none;
             margin-top: 20px;
             font-size: 20px;
             color: red;
         }
+        /* 结果容器（居中对齐） */
+        .result-container {
+            display: none;
+            margin-top: 50px;
+            text-align: center;
+        }
+        /* 第二个GIF: 居中 & 适配手机 */
         #newGif {
-            display: none; /* 默认隐藏第二张 GIF */
             max-width: 60%;
             height: auto;
-            margin-top: 10px;
+            display: block;
+            margin: 0 auto;
         }
+        /* "这是不是你呀" 文字 */
         #newText {
-            display: none;
             font-size: 20px;
             color: black;
             margin-top: 10px;
+            text-align: center;
         }
         /* 适配移动端 */
         @media (max-width: 600px) {
@@ -70,12 +83,15 @@
             #newText {
                 font-size: 18px;
             }
+            #cat, #newGif {
+                max-width: 80%;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- 第一个 GIF -->
+    <!-- 第一个 GIF (猫咪GIF) -->
     <img id="cat" src="static/IMG.gif" alt="猫咪GIF">
 
     <div class="question">请问你是笨蛋吗？</div>
@@ -87,9 +103,11 @@
 
     <div id="disagreeText">原来你自己都觉得自己是笨蛋哈哈哈</div>
 
-    <!-- 第二个 GIF 和提示文字 -->
-    <img id="newGif" src="static/IMG2.gif" alt="新的动图">
-    <div id="newText">这是不是你呀？</div>
+    <!-- 居中对齐的结果内容 -->
+    <div class="result-container" id="result">
+        <img id="newGif" src="static/IMG2.gif" alt="新的动图">
+        <div id="newText">这是不是你呀？</div>
+    </div>
 
     <script>
         const agreeButton = document.getElementById('agree');
@@ -98,8 +116,7 @@
         const catImage = document.getElementById('cat');
         const question = document.querySelector('.question');
         const buttons = document.querySelector('.buttons');
-        const newGif = document.getElementById('newGif');
-        const newText = document.getElementById('newText');
+        const resultContainer = document.getElementById('result');
 
         let agreeButtonSize = 100; // 按钮初始大小
 
@@ -111,10 +128,9 @@
         });
 
         agreeButton.addEventListener('click', function() {
-            // 只有点击 "同意" 按钮时，才会显示文字和新的 GIF
+            // 只有点击 "同意" 按钮时，才会显示新的内容
             disagreeText.style.display = 'block';
-            newGif.style.display = 'block';
-            newText.style.display = 'block';
+            resultContainer.style.display = 'block';
 
             // 隐藏原有内容
             catImage.style.display = 'none';
